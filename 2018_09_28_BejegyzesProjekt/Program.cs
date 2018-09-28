@@ -76,7 +76,7 @@ namespace _2018_09_28_BejegyzesProjekt
             }
             public string Kiir()
             {
-                string szoveg = this.Szerzo + " - "  + this.Likeok + " - " + this.Letrejott + "\n";
+                string szoveg = this.Szerzo + " - " + this.Likeok + " - " + this.Letrejott + "\n";
                 szoveg += "Szerkesztve: " + this.Szerkesztve + "\n";
                 szoveg += this.Tartalom;
                 return szoveg;
@@ -85,8 +85,31 @@ namespace _2018_09_28_BejegyzesProjekt
 
         static void Main(string[] args)
         {
-            Bejegyzes pelda = new Bejegyzes("MARIKA","kutya");
+            Bejegyzes pelda = new Bejegyzes("Marika", "kutya");
             Console.WriteLine(pelda.Kiir());
+            Console.WriteLine();
+
+            List<string> bejegyzes = new List<string>();
+            bejegyzes.Add("Katika - 0 - " + DateTime.Now + "\nSzerkesztve: " + DateTime.Now + "\ncica\n");
+            bejegyzes.Add("Icuka - 0 - " + DateTime.Now + "\nSzerkesztve: " + DateTime.Now + "\nmalac\n");
+            Console.Write("Kérem adjon meg egy számot: ");
+            int db = Convert.ToInt32(Console.ReadLine());
+            string szerzo = "";
+            int likeok = 0;
+            for (int i = 0; i < db; i++)
+            {
+                Console.Write("Add meg a szerzőt: ");
+                szerzo = Convert.ToString(Console.ReadLine());
+                bejegyzes.Add(szerzo);
+                Console.Write("Add meg a like-ok számát: ");
+                likeok = Convert.ToInt32(Console.ReadLine());
+                bejegyzes.Add(Convert.ToString(likeok));
+            }
+            Console.WriteLine(szerzo + " - " + likeok + " - " + DateTime.Now);
+            foreach (string Lista_adatok in bejegyzes)
+            {
+                Console.WriteLine(Lista_adatok);
+            }
             Console.ReadKey();
         }
     }
