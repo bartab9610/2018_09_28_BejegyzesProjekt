@@ -10,29 +10,29 @@ namespace _2018_09_28_BejegyzesProjekt
     {
         class Bejegyzes
         {
-            // -szerzo : string
-            // -tartalom : string
-            // -likeok : int
-            // -letrejott : DateTime
+            // - szerzo : string
+            // - tartalom : string
+            // - likeok : int
+            // - letrejott : DateTime
             // - szerkesztve : DateTime
-            string Szerzo;
-            string Tartalom;
-            public int Likeok = 0;
-            DateTime Letrejott = DateTime.Now;
-            DateTime Szerkesztve = DateTime.Now;
+            public string Szerzo;
+            public string Tartalom;
+            public int Likeok;
+            public DateTime Letrejott = DateTime.Now;
+            public DateTime Szerkesztve = DateTime.Now;
 
             public int Like()
             {
                 Likeok++;
                 return 0;
             }
-            public Bejegyzes(string szerzo, string tartalom, int likeok, DateTime letrejott, DateTime szerkesztve)
+            public Bejegyzes(string szerzo, string tartalom)
             {
                 this.Szerzo = szerzo;
                 this.Tartalom = tartalom;
-                this.Likeok = likeok;
-                this.Letrejott = letrejott;
-                this.Szerkesztve = szerkesztve;
+                this.Likeok = 0;
+                this.Letrejott = DateTime.Now;
+                this.Szerkesztve = this.letrejott;
             }
             public string szerzo
             {
@@ -50,6 +50,7 @@ namespace _2018_09_28_BejegyzesProjekt
                 set
                 {
                     this.tartalom = Tartalom;
+                    this.Szerkesztve = DateTime.Now;
                 }
             }
             public int likeok
@@ -63,14 +64,30 @@ namespace _2018_09_28_BejegyzesProjekt
             {
                 get
                 {
-                    return Letrejott = DateTime.Now;
+                    return Letrejott;
                 }
             }
-
+            public DateTime szerkesztve
+            {
+                get
+                {
+                    return Szerkesztve = DateTime.Now;
+                }
+            }
+            public string Kiir()
+            {
+                string szoveg = this.Szerzo + " - "  + this.Likeok + " - " + this.Letrejott + "\n";
+                szoveg += "Szerkesztve: " + this.Szerkesztve + "\n";
+                szoveg += this.Tartalom;
+                return szoveg;
+            }
         }
 
         static void Main(string[] args)
         {
+            Bejegyzes pelda = new Bejegyzes("MARIKA","kutya");
+            Console.WriteLine(pelda.Kiir());
+            Console.ReadKey();
         }
     }
 }
